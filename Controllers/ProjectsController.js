@@ -1,7 +1,7 @@
-import Project from "../Models/ProjectModel";
+const Project = require("../Models/ProjectModel");
 
 
-export const createProject = async (req, res) => {
+ const createProject = async (req, res) => {
   try {
     const project = new Project(req.body);
     await project.save();
@@ -12,7 +12,7 @@ export const createProject = async (req, res) => {
 };
 
 
-export const getProjects = async (req, res) => {
+ const getProjects = async (req, res) => {
   try {
     const projects = await Project.find().sort({ createdAt: -1 });
     res.status(200).json({ success: true, count: projects.length, data: projects });
@@ -22,7 +22,7 @@ export const getProjects = async (req, res) => {
 };
 
 
-export const getProjectById = async (req, res) => {
+ const getProjectById = async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
     if (!project) {
@@ -35,7 +35,7 @@ export const getProjectById = async (req, res) => {
 };
 
 
-export const updateProject = async (req, res) => {
+ const updateProject = async (req, res) => {
   try {
     const project = await Project.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -50,7 +50,7 @@ export const updateProject = async (req, res) => {
   }
 };
 
-export const deleteProject = async (req, res) => {
+ const deleteProject = async (req, res) => {
   try {
     const project = await Project.findByIdAndDelete(req.params.id);
     if (!project) {
@@ -61,3 +61,12 @@ export const deleteProject = async (req, res) => {
     res.status(500).json({ success: false, message: "Failed to delete project", error: error.message });
   }
 };
+
+
+module.exports = {
+  createProject,
+  getProjects,
+  getProjectById,
+  updateProject,
+  deleteProject
+}
