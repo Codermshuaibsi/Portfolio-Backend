@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 // Import Routes
 const serviceRoutes = require("./Routes/ServicesRoutes");
 const contactRoutes = require("./Routes/contactRoutes")
-
+const projectsRoutes = require("./Routes/ProjectsRoutes");
 dotenv.config();
 const app = express();
 
@@ -29,7 +29,7 @@ app.use(express.json());
 
 app.use("/api/v1/service", serviceRoutes);
 app.use("/api/v1", contactRoutes);
-app.use("/api/v1/projects", require("./Routes/ProjectsRoutes"));
+app.use("/api/v1/projects",projectsRoutes);
 
 // -------------------- Start Server --------------------
 const PORT = process.env.PORT;
