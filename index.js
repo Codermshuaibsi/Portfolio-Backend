@@ -29,6 +29,7 @@ app.use(express.json());
 
 app.use("/api/v1/service", serviceRoutes);
 app.use("/api/v1", contactRoutes);
+app.use("/api/v1/projects", require("./Routes/ProjectsRoutes"));
 
 // -------------------- Start Server --------------------
 const PORT = process.env.PORT;
